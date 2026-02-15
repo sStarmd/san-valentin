@@ -4,13 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para Daniela 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --rosa: #ff4d88;
+      --rosa-claro: #ff85b3;
+      --rosa-pastel: #ffd6e7;
+      --sombra: 0 10px 40px rgba(255, 77, 136, 0.2);
+      --sombra-fuerte: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(#ffd6e7, #fff);
+      background: linear-gradient(135deg, #fff5f8 0%, #ffe8ef 50%, #ffd6e7 100%);
       overflow-x: hidden;
       color: #333;
       text-align: center;
@@ -24,94 +34,70 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
+      padding: 50px 24px;
+      position: relative;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      color: #8b3a5c;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .hidden { display: none; }
 
+    /* Hero con tulipanes HD */
     .hero {
-      background: url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      background: linear-gradient(rgba(139, 58, 92, 0.35), rgba(255, 77, 136, 0.25)),
+        url('https://p4.wallpaperbetter.com/wallpaper/806/184/53/tulips-4k-image-hd-wallpaper-preview.jpg') center/cover no-repeat fixed;
       color: white;
-      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.3);
     }
 
-    .hero h1 { font-size: 48px; }
+    .hero h1 {
+      font-size: 56px;
+      margin-bottom: 12px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .btn {
-      margin-top: 20px;
-      padding: 12px 24px;
+      margin-top: 24px;
+      padding: 14px 32px;
       border: none;
-      border-radius: 30px;
-      background: #ff4d88;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--rosa) 0%, var(--rosa-claro) 100%);
       color: white;
       font-size: 18px;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: var(--sombra);
     }
 
-    .gallery img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin: 10px;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(255, 77, 136, 0.4);
     }
 
-    .letter {
-      max-width: 700px;
-      font-size: 18px;
-      line-height: 1.7;
-      background: rgba(255,255,255,0.85);
-      padding: 30px;
-      border-radius: 20px;
-    }
-
-    #counter { font-size: 24px; margin-top: 10px; }
-
-    .game-area {
-      position: relative;
-      width: 90vw;
-      max-width: 500px;
-      height: 350px;
-      background: #fff0f6;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .tulip { position: absolute; font-size: 30px; }
-
-    #map {
-      width: 90vw;
-      max-width: 600px;
-      height: 300px;
-      background: linear-gradient(120deg,#ffe3ec,#ffffff);
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .city {
-      position: absolute;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .line {
-      position: absolute;
-      height: 2px;
-      background: #ff4d88;
-      transform-origin: left center;
-      animation: draw 3s ease forwards;
-    }
-
-    @keyframes draw { from { width: 0; } to { width: 100%; } }
-
-    .final { font-size: 30px; color: #ff4d88; display: none; }
-
+    /* Lock screen mejorado */
     .lock-screen {
       position: fixed;
       inset: 0;
-      background: #ffd6e7;
+      background: linear-gradient(135deg, #ffecd2 0%, #ffd6e7 50%, #ffe0ec 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -119,31 +105,203 @@
       z-index: 999;
     }
 
-    input {
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      margin-top: 10px;
+    .lock-screen h2 {
+      font-size: 2.8rem;
+      color: #8b3a5c;
+      margin-bottom: 8px;
+    }
+
+    .lock-subtitle {
+      font-size: 1.1rem;
+      color: #8b3a5c;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .lock-decor {
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+      margin: 12px 0;
+      opacity: 0.85;
+    }
+
+    .lock-top { margin-bottom: 8px; }
+    .lock-bottom { margin-top: 20px; }
+
+    .lock-screen input {
+      padding: 14px 24px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 77, 136, 0.3);
+      margin-top: 8px;
       text-align: center;
+      font-size: 1rem;
+      width: 220px;
+      transition: border-color 0.3s;
+    }
+
+    .lock-screen input:focus {
+      outline: none;
+      border-color: var(--rosa);
+      box-shadow: 0 0 0 4px rgba(255, 77, 136, 0.15);
+    }
+
+    /* Galería con estilo */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+    }
+
+    .gallery img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: var(--sombra-fuerte);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 25px 50px rgba(255, 77, 136, 0.3);
+    }
+
+    /* Carta con diseño elegante */
+    .letter {
+      max-width: 680px;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: var(--sombra-fuerte);
+      text-align: left;
+      position: relative;
+      border: 1px solid rgba(255, 77, 136, 0.1);
+    }
+
+    .letter::before {
+      content: '💌';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+    }
+
+    #counter {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--rosa);
+      margin-top: 12px;
+      padding: 20px 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--sombra);
+    }
+
+    /* Juego de tulipanes */
+    .game-area {
+      position: relative;
+      width: 90vw;
+      max-width: 500px;
+      height: 350px;
+      background: linear-gradient(145deg, #ffffff 0%, #fff5f9 50%, #ffecf3 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--sombra-fuerte);
+      border: 2px solid rgba(255, 77, 136, 0.15);
+    }
+
+    .tulip {
+      position: absolute;
+      font-size: 36px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .tulip:hover { transform: scale(1.2); }
+
+    #score {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #8b3a5c;
+      margin-top: 16px;
+    }
+
+    .final {
+      font-size: 2rem;
+      color: var(--rosa);
+      display: none;
+      font-weight: 700;
+      margin-top: 12px;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    /* Mapa */
+    #map {
+      width: 90vw;
+      max-width: 600px;
+      height: 300px;
+      background: linear-gradient(145deg, #ffffff 0%, #fff5f9 50%, #ffe8ef 100%);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sombra-fuerte);
+    }
+
+    .city {
+      position: absolute;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #8b3a5c;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .line {
+      position: absolute;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rosa), var(--rosa-claro));
+      transform-origin: left center;
+      animation: draw 2s ease forwards;
+      border-radius: 2px;
+    }
+
+    @keyframes draw { from { width: 0; } to { width: 100%; } }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (max-width: 600px) {
-      .hero h1 { font-size: 36px; }
-      .letter { font-size: 16px; }
+      .hero h1 { font-size: 40px; }
+      .hero p { font-size: 1rem; }
+      section h2 { font-size: 2rem; }
+      .letter { font-size: 1rem; padding: 30px 24px; }
+      .gallery img { width: 160px; height: 160px; }
     }
   </style>
 </head>
 <body>
 
 <div class="lock-screen" id="lock">
-  <h2>Ingresa nuestra fecha 💖</h2>
-  <input type="password" id="pass" placeholder="27-03-2021" />
+  <p class="lock-decor lock-top">🌸 🍀 🌸 🍀 🌸</p>
+  <h2>Feliz San Valentín 🍀</h2>
+  <p class="lock-subtitle">Ingresa nuestra fecha 💖</p>
+  <input type="password" id="pass" />
   <button class="btn" onclick="unlock()">Entrar</button>
+  <p class="lock-decor lock-bottom">🍀 🌸 🍀 🌸 🍀</p>
 </div>
 
 <section class="hero hidden" id="main">
   <h1>Daniela Alejandra 💖</h1>
-  <p>Desde el 27 de marzo de 2021... mi corazón es tuyo 🌷</p>
+  <p> Gracias por estar en mi vida, Te amo 50🍀</p>
 </section>
 
 <section class="hidden" id="mapSection">
@@ -158,16 +316,16 @@
 <section class="hidden" id="galeria">
   <h2>Nuestros momentos 📸</h2>
   <div class="gallery">
-    <img src="img/foto1.jpg" />
-    <img src="img/foto2.jpg" />
-    <img src="img/foto3.jpg" />
+    <img src="img/foto1.jpg.jpeg" alt="Momento 1" />
+    <img src="img/foto2.jpg.jpeg" alt="Momento 2" />
+    <img src="img/foto3.jpg.jpeg" alt="Momento 3" />
   </div>
 </section>
 
 <section class="hidden">
   <h2>Mi carta para ti 💌</h2>
   <div class="letter">
-    Te amo desde el 27 de marzo de 2021. Aunque estemos en países distintos,
+    Te amo desde el 27 de enero de 2021. Aunque estemos en países distintos,
     mi amor cruza cada frontera solo para llegar a ti.
     <br><br>
     Si el mundo fuera un jardín, tú serías el tulipán más hermoso.
@@ -189,21 +347,22 @@
   <div class="final" id="finalMsg">TE AMO DANIELA 💖</div>
 </section>
 
-<audio id="music" loop>
-  <source src="music/turning-page.mp3" type="audio/mp3">
+<audio id="music" loop preload="auto">
+  <source src="music/turning-page.mp3.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function unlock() {
-  const val = document.getElementById('pass').value;
-  if (val === '27-03-2021') {
+  const val = document.getElementById('pass').value.trim();
+  if (val === '27-01-2021') {
     document.getElementById('lock').style.display = 'none';
     document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
-    document.getElementById('music').play();
+    const music = document.getElementById('music');
+    music.play().catch(() => {}); // Ignorar si el navegador bloquea o no hay archivo
   } else alert('Pista: nuestra fecha 💖');
 }
 
-const startDate = new Date('2021-03-27');
+const startDate = new Date('2021-01-27');
 const counter = document.getElementById('counter');
 setInterval(()=>{
   const diff = new Date() - startDate;
@@ -303,8 +462,8 @@ function showCinemaEnding(){
   end.style.animation='fadeIn 2s forwards';
 
   end.innerHTML = `
-    Daniela Alejandra ❤️ Moises<br><br>
-    Nuestro amor apenas comienza... 🌷
+    Daniela y Moises<br><br>
+    Nuestro amor apenas comienza... 🌷<br> MYDESTINY 💖
   `;
 
   document.body.appendChild(end);
