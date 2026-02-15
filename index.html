@@ -47,10 +47,13 @@
 
     .hidden { display: none; }
 
-    /* Hero con tulipanes HD */
+    /* Hero con tulipanes HD - imagen local foto4 */
     .hero {
       background: linear-gradient(rgba(139, 58, 92, 0.35), rgba(255, 77, 136, 0.25)),
-        url('https://p4.wallpaperbetter.com/wallpaper/806/184/53/tulips-4k-image-hd-wallpaper-preview.jpg') center/cover no-repeat fixed;
+        url('img/foto4.jpg') center/cover no-repeat;
+      background-attachment: scroll;
+      -webkit-background-size: cover;
+      background-size: cover;
       color: white;
       text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.3);
     }
@@ -208,6 +211,7 @@
       width: 90vw;
       max-width: 500px;
       height: 350px;
+      min-height: 280px;
       background: linear-gradient(145deg, #ffffff 0%, #fff5f9 50%, #ffecf3 100%);
       border-radius: 24px;
       overflow: hidden;
@@ -220,6 +224,13 @@
       font-size: 36px;
       cursor: pointer;
       transition: transform 0.2s ease;
+      touch-action: manipulation;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
     }
 
     .tulip:hover { transform: scale(1.2); }
@@ -358,7 +369,8 @@ function unlock() {
     document.getElementById('lock').style.display = 'none';
     document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
     const music = document.getElementById('music');
-    music.play().catch(() => {}); // Ignorar si el navegador bloquea o no hay archivo
+    music.play().catch(() => {});
+    setTimeout(createTulips, 150);
   } else alert('Pista: nuestra fecha 💖');
 }
 
@@ -375,21 +387,23 @@ const scoreText = document.getElementById('score');
 const finalMsg = document.getElementById('finalMsg');
 let score=0;
 
-function createTulip(){
-  const t=document.createElement('div');
-  t.className='tulip';
-  t.innerText='🌷';
-  t.style.top=Math.random()*300+'px';
-  t.style.left=Math.random()*450+'px';
-  t.onclick=()=>{
-    t.remove();
-    score++;
-    scoreText.innerText=score+' / 10';
-    if(score>=10) finalMsg.style.display='block';
-  };
-  game.appendChild(t);
+function createTulips(){
+  game.innerHTML='';
+  score=0;
+  scoreText.innerText='0 / 10';
+  finalMsg.style.display='none';
+  var w=game.clientWidth||400, h=game.clientHeight||300;
+  var pad=35;
+  for(var i=0;i<10;i++){
+    var t=document.createElement('div');
+    t.className='tulip';
+    t.innerText='🌷';
+    t.style.top=(pad+Math.random()*(h-pad*2))+'px';
+    t.style.left=(pad+Math.random()*(w-pad*2))+'px';
+    t.onclick=function(){ this.remove(); score++; scoreText.innerText=score+' / 10'; if(score>=10) finalMsg.style.display='block'; };
+    game.appendChild(t);
+  }
 }
-for(let i=0;i<10;i++) createTulip();
 
 
 // 🎆 Fuegos artificiales simples
