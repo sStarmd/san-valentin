@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Daniela 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(#ffd6e7, #fff);
+      overflow-x: hidden;
+      color: #333;
+      text-align: center;
+    }
+
+    h1, h2 { font-family: 'Great Vibes', cursive; }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .hidden { display: none; }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    .hero h1 { font-size: 48px; }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d88;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 10px;
+    }
+
+    .letter {
+      max-width: 700px;
+      font-size: 18px;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.85);
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    #counter { font-size: 24px; margin-top: 10px; }
+
+    .game-area {
+      position: relative;
+      width: 90vw;
+      max-width: 500px;
+      height: 350px;
+      background: #fff0f6;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .tulip { position: absolute; font-size: 30px; }
+
+    #map {
+      width: 90vw;
+      max-width: 600px;
+      height: 300px;
+      background: linear-gradient(120deg,#ffe3ec,#ffffff);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .city {
+      position: absolute;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .line {
+      position: absolute;
+      height: 2px;
+      background: #ff4d88;
+      transform-origin: left center;
+      animation: draw 3s ease forwards;
+    }
+
+    @keyframes draw { from { width: 0; } to { width: 100%; } }
+
+    .final { font-size: 30px; color: #ff4d88; display: none; }
+
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: #ffd6e7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .letter { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lock-screen" id="lock">
+  <h2>Ingresa nuestra fecha 💖</h2>
+  <input type="password" id="pass" placeholder="27-03-2021" />
+  <button class="btn" onclick="unlock()">Entrar</button>
+</div>
+
+<section class="hero hidden" id="main">
+  <h1>Daniela Alejandra 💖</h1>
+  <p>Desde el 27 de marzo de 2021... mi corazón es tuyo 🌷</p>
+</section>
+
+<section class="hidden" id="mapSection">
+  <h2>Nuestra distancia, un solo amor 🌍</h2>
+  <div id="map">
+    <div class="city" style="top:40%; left:20%">Bogotá 🇨🇴</div>
+    <div class="city" style="top:70%; left:70%">Santiago 🇨🇱</div>
+    <div class="line" style="top:55%; left:20%; width:50%; transform:rotate(25deg)"></div>
+  </div>
+</section>
+
+<section class="hidden" id="galeria">
+  <h2>Nuestros momentos 📸</h2>
+  <div class="gallery">
+    <img src="img/foto1.jpg" />
+    <img src="img/foto2.jpg" />
+    <img src="img/foto3.jpg" />
+  </div>
+</section>
+
+<section class="hidden">
+  <h2>Mi carta para ti 💌</h2>
+  <div class="letter">
+    Te amo desde el 27 de marzo de 2021. Aunque estemos en países distintos,
+    mi amor cruza cada frontera solo para llegar a ti.
+    <br><br>
+    Si el mundo fuera un jardín, tú serías el tulipán más hermoso.
+    <br><br>
+    Con todo mi corazón,<br>
+    <b>Moises 💖</b>
+  </div>
+</section>
+
+<section class="hidden">
+  <h2>Nuestro tiempo ⏳</h2>
+  <div id="counter"></div>
+</section>
+
+<section class="hidden">
+  <h2>Recoge los tulipanes 🌷</h2>
+  <div class="game-area" id="game"></div>
+  <div id="score">0 / 10</div>
+  <div class="final" id="finalMsg">TE AMO DANIELA 💖</div>
+</section>
+
+<audio id="music" loop>
+  <source src="music/turning-page.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function unlock() {
+  const val = document.getElementById('pass').value;
+  if (val === '27-03-2021') {
+    document.getElementById('lock').style.display = 'none';
+    document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
+    document.getElementById('music').play();
+  } else alert('Pista: nuestra fecha 💖');
+}
+
+const startDate = new Date('2021-03-27');
+const counter = document.getElementById('counter');
+setInterval(()=>{
+  const diff = new Date() - startDate;
+  const days = Math.floor(diff / (1000*60*60*24));
+  counter.innerText = days + ' días amándonos 💖';
+},1000);
+
+const game = document.getElementById('game');
+const scoreText = document.getElementById('score');
+const finalMsg = document.getElementById('finalMsg');
+let score=0;
+
+function createTulip(){
+  const t=document.createElement('div');
+  t.className='tulip';
+  t.innerText='🌷';
+  t.style.top=Math.random()*300+'px';
+  t.style.left=Math.random()*450+'px';
+  t.onclick=()=>{
+    t.remove();
+    score++;
+    scoreText.innerText=score+' / 10';
+    if(score>=10) finalMsg.style.display='block';
+  };
+  game.appendChild(t);
+}
+for(let i=0;i<10;i++) createTulip();
+
+
+// 🎆 Fuegos artificiales simples
+const fireworksCanvas = document.createElement('canvas');
+fireworksCanvas.style.position = 'fixed';
+fireworksCanvas.style.inset = '0';
+fireworksCanvas.style.pointerEvents = 'none';
+document.body.appendChild(fireworksCanvas);
+
+const fctx = fireworksCanvas.getContext('2d');
+function resizeFW(){
+  fireworksCanvas.width = window.innerWidth;
+  fireworksCanvas.height = window.innerHeight;
+}
+resizeFW();
+window.addEventListener('resize', resizeFW);
+
+let particles = [];
+
+function createFirework(){
+  const x = Math.random() * fireworksCanvas.width;
+  const y = Math.random() * fireworksCanvas.height / 2;
+  for(let i=0;i<30;i++){
+    particles.push({
+      x, y,
+      vx: (Math.random()-0.5)*4,
+      vy: (Math.random()-0.5)*4,
+      life: 60
+    });
+  }
+}
+
+function drawFireworks(){
+  fctx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+  particles.forEach(p=>{
+    fctx.fillStyle = '#ff4d88';
+    fctx.fillRect(p.x,p.y,3,3);
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+  });
+  particles = particles.filter(p=>p.life>0);
+  requestAnimationFrame(drawFireworks);
+}
+drawFireworks();
+
+// Activar final cinematográfico al ganar
+const observer = new MutationObserver(()=>{
+  if(finalMsg.style.display === 'block'){
+    for(let i=0;i<6;i++) setTimeout(createFirework, i*400);
+    showCinemaEnding();
+  }
+});
+observer.observe(finalMsg,{attributes:true});
+
+// 🎬 Pantalla final tipo película
+function showCinemaEnding(){
+  const end = document.createElement('div');
+  end.style.position='fixed';
+  end.style.inset='0';
+  end.style.background='black';
+  end.style.color='white';
+  end.style.display='flex';
+  end.style.flexDirection='column';
+  end.style.justifyContent='center';
+  end.style.alignItems='center';
+  end.style.fontFamily='Great Vibes, cursive';
+  end.style.fontSize='40px';
+  end.style.textAlign='center';
+  end.style.animation='fadeIn 2s forwards';
+
+  end.innerHTML = `
+    Daniela Alejandra ❤️ Moises<br><br>
+    Nuestro amor apenas comienza... 🌷
+  `;
+
+  document.body.appendChild(end);
+}
+
+</script>
+
+</body>
+</html>
